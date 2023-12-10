@@ -1,0 +1,75 @@
+Clases
+
+user
+  id
+  name
+  addres
+
+Customers
+  name
+  address
+  email
+  credict(s) card(s)
+
+Owner
+  name
+  address
+  email
+  bankAccount
+  properties
+
+Organization
+  name
+  address
+  accountManager
+  email
+  bankAccount
+  properties
+
+BanckAccount
+  idUser
+  Bank
+  Branch
+  AccountNumber
+
+Properties
+  id
+  rooms
+  contactPerson
+  phone
+  address
+
+Rooms
+  id
+  peopleCapacity
+  available
+  costPerDay
+
+Reservations
+  property
+  startdate
+  endDate
+  rooms
+  price
+  status
+  raitings
+
+Raiting
+  idCustomer
+  
+
+Address
+  country
+  state
+  address
+  zipCode
+
+Status
+  Booked
+  Paid
+  Cancelled
+
+PayOptions
+  cash
+  card
+
