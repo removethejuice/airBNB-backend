@@ -75,22 +75,3 @@ appInstance.post('/createuser', async (req, res) => {
 })
 
 
-
-
-// appInstance.post('/createUser', async (req, res) => {
-//   try {
-//
-
-//
-//     const doc = {
-//       number: 123
-//     }
-//     const result = await usuarios.insertOne(doc);
-//     console.log(`A document was inserted with the _id: ${result.insertedId}`);
-
-//   } finally {
-//     await client.close();
-//   }
-//   res.status(200).send("Usuario creado exitosamente");
-// })
-
