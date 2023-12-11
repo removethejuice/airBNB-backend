@@ -1,19 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const {getUsers} = require('../backend/controllers/userController.js')
-
+const {putUsers} = require('../backend/controllers/userController.js')
+const {postUsers} = require('../backend/controllers/userController.js')
+const {deleteUsers} = require('../backend/controllers/userController.js')
 
 router.get('/', getUsers)
 
-router.post('/', (req, res) => {
-    res.status(200).json({message: 'No error'})
-})
+router.put('/:id', putUsers)
 
-router.delete('/:id', (req, res) => {
-    res.status(200).json({message: 'No error'})
-})
+router.post('/', postUsers)
 
-router.put('/:id', (req, res) => {
-    res.status(200).json({message: 'No error'})
-})
+router.delete('/:id', deleteUsers)
+
 module.exports = router
