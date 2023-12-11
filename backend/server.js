@@ -49,6 +49,7 @@ appInstance.listen(port, async () => {
 appInstance.use('/api/users', require('../routes/userRoutes.js'))
 
 
+
 appInstance.post('/createuser', async (req, res) => {
   try {
     // nos conectamos a la base de datos proyectoUX y a la coleccion clientes
@@ -67,7 +68,7 @@ appInstance.post('/createuser', async (req, res) => {
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } 
   catch(error){
-      res.status(200).send("ERROR en algo")
+      res.status(500).send("ERROR en algo")
     }
   finally {
     // Close the MongoDB client connection

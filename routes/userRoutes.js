@@ -6,7 +6,7 @@ router.post('/', (req, res) =>{
 })
 
 router.get('/', (req, res) => {
-    res.status(200).json({message: 'Chavez es gay'})
+    res.status(200).json({message: 'No error'})
 })
 
 module.exports = router
