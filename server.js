@@ -21,6 +21,7 @@ const { initiateFirebase } = require('./configfirebase.js');
 // Importing 'express' for building the server and creating an app instance.
 const uri = "mongodb+srv://diegojesuschavezbotto:Pedifart123@@cluster0.6ygm1rx.mongodb.net/?retryWrites=true&w=majority";
 const express = require('express');
+const dotenv = require('dotenv').config();
 const appInstance = express();
 
 // Importing 'cors' middleware for handling Cross-Origin Resource Sharing.
