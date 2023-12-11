@@ -22,6 +22,7 @@ const { initiateFirebase } = require('../configfirebase.js');
 const uri = "mongodb+srv://diegojesuschavezbotto:Pedifart123@@cluster0.6ygm1rx.mongodb.net/?retryWrites=true&w=majority";
 const express = require('express');
 const dotenv = require('dotenv').config();
+const {errorHandler} = require ('../backend/middleware/errorMiddleware.js')
 const appInstance = express();
 
 // Importing 'cors' middleware for handling Cross-Origin Resource Sharing.
@@ -49,7 +50,7 @@ appInstance.listen(port, async () => {
 
 //esta linea conecta a el CRUD con user Routes que contiene todos los metodos para los users
 appInstance.use('/api/users', require('../routes/userRoutes.js'))
-
+appInstance.use(errorHandler);
 
 appInstance.post('/createuser', async (req, res) => {
   try {

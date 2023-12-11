@@ -12,4 +12,4 @@ router.delete('/:id', deleteUsers)
 
 module.exports = router
 
-//basicamente exportamos esto al router
+//basicamente exportamos esto al router esto lo ocupamos para los metodos, estos tienen que corrrer despues de poner/api/users

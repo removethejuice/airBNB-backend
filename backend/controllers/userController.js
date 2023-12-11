@@ -1,4 +1,4 @@
-//basicamente esta es la carne de los metodos y lo exportamos a userRoutes
+ //basicamente esta es la carne de los metodos y lo exportamos a userRoutes
 const getUsers = (req,res) => {
     res.status(200).json({message:'Get users'})
 }
@@ -9,6 +9,10 @@ const postUsers = (req,res) => {
 
 const putUsers = (req,res) => {
     console.log(req.body)
+    if(!req.body.text){
+        res.status (400)
+        throw new Error('Es en texto la cosa papi')
+    }
     res.status(200).json({message:'Put users'})
 }
 
