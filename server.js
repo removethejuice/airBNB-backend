@@ -58,7 +58,6 @@ appInstance.post('/createuser', async (req, res) => {
     const doc = {
       title: "Record of a Shriveled Datum",
       content: "No bytes, no problem. Just insert a document, in MongoDB",
-
     }
 
     // Insert the defined document into the "clientes" collection
