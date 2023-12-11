@@ -45,41 +45,53 @@ appInstance.listen(port, async () => {
   await pingdb(console.dir);
   initiateFirebase(console.dir);
 })
+appInstance.use('/api/users', require('./routes/userRoutes.js'))
 
-appInstance.post('/createUser', async (req, res) => {
+
+appInstance.post('/createuser', async (req, res) => {
   try {
+    // nos conectamos a la base de datos proyectoUX y a la coleccion clientes
     const client = new MongoClient(uri);
-    const database = client.db("insertDB");
-    const usuarios = database.collection("usuarios");
-
-    // Create a document to insert
-    const customerAddress = new Address("456 Oak St", "Townsville", "54321");
-
-    // Example data for CreditCard
-    const creditCard1 = new CreditCard("1234-5678-9012-3456", "12/23");
-    const creditCard2 = new CreditCard("9876-5432-1098-7654", "06/25");
-
-    // Example data for Customer
-    const customer = new Customer(
-      1,
-      "John",
-      "Doe",
-      customerAddress,
-      "john@example.com",
-      [creditCard1, creditCard2]
-    );
-
-    // Logging the created Customer
-    console.log(customer);
+    const database = client.db("proyectoUX");
+    const clientes = database.collection("clientes");
+   
     const doc = {
-      number: 123
-    }
-    const result = await usuarios.insertOne(doc);
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+      title: "Record of a Shriveled Datum",
+      content: "No bytes, no problem. Just insert a document, in MongoDB",
 
-  } finally {
+    }
+
+    // Insert the defined document into the "clientes" collection
+    const result = await clientes.insertOne(doc);
+    // Print the ID of the inserted document
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+  } 
+  catch(error){
+      res.status(200).send("ERROR en algo")
+    }
+  finally {
+    // Close the MongoDB client connection
     await client.close();
   }
-  res.status(200).send("Usuario creado exitosamente");
 })
+
+
+
+
+// appInstance.post('/createUser', async (req, res) => {
+//   try {
+//
+
+//
+//     const doc = {
+//       number: 123
+//     }
+//     const result = await usuarios.insertOne(doc);
+//     console.log(`A document was inserted with the _id: ${result.insertedId}`);
+
+//   } finally {
+//     await client.close();
+//   }
+//   res.status(200).send("Usuario creado exitosamente");
+// })
 
