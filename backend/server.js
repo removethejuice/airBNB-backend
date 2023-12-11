@@ -1,4 +1,4 @@
-// Importing necessary classes and functions from external modules.
+// Importando clases y funciones
 const {
   Customer,
   Owner,
@@ -18,7 +18,7 @@ const {
 
 const { initiateFirebase } = require('../configfirebase.js');
 
-// Importing 'express' for building the server and creating an app instance.
+// Importando express y el uri y demas
 const uri = "mongodb+srv://diegojesuschavezbotto:Pedifart123@@cluster0.6ygm1rx.mongodb.net/?retryWrites=true&w=majority";
 const express = require('express');
 const dotenv = require('dotenv').config();
@@ -28,26 +28,27 @@ const appInstance = express();
 const cors = require('cors');
 appInstance.use(cors());
 
-// Importing 'body-parser' middleware for parsing incoming request bodies
+// Requerimientos para iniciar el client
 const bodyParser = require('body-parser');
 const { initializeApp } = require('firebase/app');
 const { MongoClient } = require('mongodb');
 
-// Middleware for handling URL-encoded data using 'body-parser'
+
 const urlEncodeParser = bodyParser.urlencoded({ extended: true });
 appInstance.use(urlEncodeParser);
 
-// Setting the port number for the server to listen on.
+// Seteando el port, mirar el archivo .env que esta en la root del documento para mas detalles
 const port = process.env.PORT || 5000;
 
-// Starting the server and testing the connection to the MongoDB database.
+// Inicializando el servidor
 appInstance.listen(port, async () => {
   console.log("Server is running and listening on port", port);
   await pingdb(console.dir);
   initiateFirebase(console.dir);
 })
-appInstance.use('/api/users', require('../routes/userRoutes.js'))
 
+//esta linea conecta a el CRUD con user Routes que contiene todos los metodos para los users
+appInstance.use('/api/users', require('../routes/userRoutes.js'))
 
 
 appInstance.post('/createuser', async (req, res) => {
@@ -75,5 +76,7 @@ appInstance.post('/createuser', async (req, res) => {
     await client.close();
   }
 })
+
+
 
 
