@@ -38,7 +38,7 @@ const urlEncodeParser = bodyParser.urlencoded({ extended: true });
 appInstance.use(urlEncodeParser);
 
 // Setting the port number for the server to listen on.
-const port = 3000;
+const port = process.env.PORT || 5000;
 
 // Starting the server and testing the connection to the MongoDB database.
 appInstance.listen(port, async () => {
