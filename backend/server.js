@@ -9,14 +9,14 @@ const {
   Room,
   Reservation,
   ReservationStatus,
-  PaymentOptions } = require('./Classes.js');
+  PaymentOptions } = require('../Classes.js');
 
 const {
   pingdb,
   connectToMongoDB,
-  closeMongoDBConnection } = require('./configdb.js');
+  closeMongoDBConnection } = require('../configdb.js');
 
-const { initiateFirebase } = require('./configfirebase.js');
+const { initiateFirebase } = require('../configfirebase.js');
 
 // Importing 'express' for building the server and creating an app instance.
 const uri = "mongodb+srv://diegojesuschavezbotto:Pedifart123@@cluster0.6ygm1rx.mongodb.net/?retryWrites=true&w=majority";
@@ -46,7 +46,7 @@ appInstance.listen(port, async () => {
   await pingdb(console.dir);
   initiateFirebase(console.dir);
 })
-appInstance.use('/api/users', require('./routes/userRoutes.js'))
+appInstance.use('/api/users', require('../routes/userRoutes.js'))
 
 
 appInstance.post('/createuser', async (req, res) => {
