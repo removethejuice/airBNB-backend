@@ -59,10 +59,7 @@ appInstance.post('/createuser', async (req, res) => {
     const database = client.db("proyectoUX");
     const clientes = database.collection("clientes");
    
-    const doc = {
-      title: "Record of a Shriveled Datum",
-      content: "No bytes, no problem. Just insert a document, in MongoDB",
-    }
+    const doc = req.body
 
     // Insert the defined document into the "clientes" collection
     const result = await clientes.insertOne(doc);
