@@ -19,7 +19,7 @@ const {
 const { initiateFirebase } = require('../configfirebase.js');
 
 // Importando express y el uri y demas
-const uri = "mongodb+srv://diegojesuschavezbotto:Pedifart123@@cluster0.6ygm1rx.mongodb.net/?retryWrites=true&w=majority";
+
 const express = require('express');
 const colors = require('colors')
 const dotenv = require('dotenv').config();
@@ -58,7 +58,7 @@ appInstance.post('/createuser', async (req, res) => {
   let client
   try {
     // nos conectamos a la base de datos proyectoUX y a la coleccion clientes
-    client = new MongoClient(uri);
+     client = new MongoClient(process.env.MONGO_URI);
     const database = client.db("proyectoUX");
     const clientes = database.collection("clientes");
    
@@ -69,9 +69,10 @@ appInstance.post('/createuser', async (req, res) => {
     // Print the ID of the inserted document
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } 
-  catch(error){
-      res.status(500).send("ERROR en algo")
-    }
+catch (error) {
+  console.error('Error:', error);
+  res.status(500).json({ error: 'Internal Server Error', details: error.message });
+}
   finally {
     // Close the MongoDB client connection
     await client.close();
