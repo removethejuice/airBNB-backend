@@ -21,8 +21,10 @@ const { initiateFirebase } = require('../configfirebase.js');
 // Importando express y el uri y demas
 const uri = "mongodb+srv://diegojesuschavezbotto:Pedifart123@@cluster0.6ygm1rx.mongodb.net/?retryWrites=true&w=majority";
 const express = require('express');
+const colors = require('colors')
 const dotenv = require('dotenv').config();
 const {errorHandler} = require ('../backend/middleware/errorMiddleware.js')
+const connectDB = require('../backend/config/db.js')
 const appInstance = express();
 
 // Importing 'cors' middleware for handling Cross-Origin Resource Sharing.
@@ -34,13 +36,13 @@ const bodyParser = require('body-parser');
 const { initializeApp } = require('firebase/app');
 const { MongoClient } = require('mongodb');
 
-
+// esto es para que sepa como desencodear los url
 const urlEncodeParser = bodyParser.urlencoded({ extended: true });
 appInstance.use(urlEncodeParser);
 
 // Seteando el port, mirar el archivo .env que esta en la root del documento para mas detalles
 const port = process.env.PORT || 5000;
-
+connectDB()
 // Inicializando el servidor
 appInstance.listen(port, async () => {
   console.log("Server is running and listening on port", port);
@@ -53,9 +55,10 @@ appInstance.use('/api/users', require('../routes/userRoutes.js'))
 appInstance.use(errorHandler);
 
 appInstance.post('/createuser', async (req, res) => {
+  let client
   try {
     // nos conectamos a la base de datos proyectoUX y a la coleccion clientes
-    const client = new MongoClient(uri);
+    client = new MongoClient(uri);
     const database = client.db("proyectoUX");
     const clientes = database.collection("clientes");
    
