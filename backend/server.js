@@ -1,9 +1,6 @@
 // Importando clases y funciones
 const {
-  Customer,
-  Owner,
-  Organization,
-  BankAccount,
+  User,
   Property,
   Rating,
   Room,

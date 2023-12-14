@@ -5,15 +5,39 @@ const asyncHandler = require('express-async-handler')
     res.status(200).json({message:'Get users'})
 })
 
+
+
 const postUsers = asyncHandler(async (req,res) => {
-    res.status(200).json({message:'Post users'})
+    let client
+    try {
+      // nos conectamos a la base de datos proyectoUX y a la coleccion clientes
+       client = new MongoClient(process.env.MONGO_URI);
+      const database = client.db("proyectoUX");
+      const clientes = database.collection("clientes");
+
+      const doc = req.body
+  
+      
+      const result = await clientes.insertOne(doc);
+      
+      console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    } 
+  catch (error) {
+    res.status (400)
+        throw new Error('Error en algo')
+  }
+    finally {
+      // Close the MongoDB client connection
+      res.status(200).json({message:'Todo salio bien rick!!!!!!!~!'})
+      await client.close();
+    }
 })
 
 const putUsers =  asyncHandler(async(req,res) => {
-    console.log(req.body)
+    
     if(!req.body.text){
         res.status (400)
-        throw new Error('Es en texto la cosa papi')
+        throw new Error('Error en algo')
     }
     res.status(200).json({message:'Put users'})
 })

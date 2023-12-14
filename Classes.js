@@ -17,74 +17,6 @@ class User {
   }
 }
 
-class Customer extends User {
-  /**
-   * Creates an instance of Customer.
-   * @constructor
-   * @param {number} id - The customer ID.
-   * @param {string} name - The customer's name.
-   * @param {Address} address - The customer's address.
-   * @param {CreditCard[]} creditCards - The customer's credit cards.
-   */
-  constructor(id, name, address, email, creditCards) {
-    super(id, name, address, email);
-    this.email = email;
-    this.creditCards = creditCards;
-  }
-}
-
-class Owner extends User {
-  /**
-   * Creates an instance of Owner.
-   * @constructor
-   * @param {number} id - The owner ID.
-   * @param {string} name - The owner's name.
-   * @param {Address} address - The owner's address.
-   * @param {BankAccount} bankAccount - The owner's bank account.
-   * @param {Property[]} properties - The properties owned by the owner.
-   */
-  constructor(id, name, address, email, bankAccount, properties) {
-    super(id, name, address, email);
-    this.bankAccount = bankAccount;
-    this.properties = properties;
-  }
-}
-
-class Organization extends User {
-  /**
-   * Creates an instance of Organization.
-   * @constructor
-   * @param {number} id - The organization ID.
-   * @param {string} name - The organization's name.
-   * @param {Address} address - The organization's address.
-   * @param {string} accountManager - The account manager for the organization.
-   * @param {BankAccount} bankAccount - The organization's bank account.
-   * @param {Property[]} properties - The properties associated with the organization.
-   */
-  constructor(id, name, address, email,  accountManager, bankAccount, properties = []) {
-    super(id, name, address, email);
-    this.accountManager = accountManager;
-    this.bankAccount = bankAccount;
-    this.properties = properties;
-  }
-}
-
-class BankAccount {
-  /**
-   * Creates an instance of BankAccount.
-   * @constructor
-   * @param {number} idUser - The user ID associated with the bank account.
-   * @param {string} bank - The bank name.
-   * @param {string} branch - The branch name.
-   * @param {string} accountNumber - The account number.
-   */
-  constructor(idUser, bank, branch, accountNumber) {
-    this.idUser = idUser;
-    this.bank = bank;
-    this.branch = branch;
-    this.accountNumber = accountNumber;
-  }
-}
 
 class Property {
   /**
@@ -195,10 +127,7 @@ const PaymentOptions = {
 };
 
 module.exports = { 
-  Customer, 
-  Owner, 
-  Organization, 
-  BankAccount, 
+  User, 
   Property, 
   Rating, 
   Room, 
