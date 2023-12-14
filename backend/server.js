@@ -75,6 +75,7 @@ catch (error) {
 }
   finally {
     // Close the MongoDB client connection
+    res.status(200).json({message:'Todo salio bien rick'})
     await client.close();
   }
 })
