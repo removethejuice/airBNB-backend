@@ -1,5 +1,6 @@
  //basicamente esta es la carne de los metodos y lo exportamos a userRoutes
 const asyncHandler = require('express-async-handler')
+const { MongoClient } = require('mongodb')
 
  const getUsers = asyncHandler(async (req,res) => {
     res.status(200).json({message:'Get users'})
@@ -28,18 +29,24 @@ const postUsers = asyncHandler(async (req,res) => {
   }
     finally {
       // Close the MongoDB client connection
-      res.status(200).json({message:'Todo salio bien rick!!!!!!!~!'})
+      res.status(200).json({message:'Todo salio bien rick!!!!!!!!'})
       await client.close();
     }
 })
 
 const putUsers =  asyncHandler(async(req,res) => {
-    
-    if(!req.body.text){
-        res.status (400)
-        throw new Error('Error en algo')
-    }
-    res.status(200).json({message:'Put users'})
+    let client
+    try {
+        client = new MongoClient(process.env.MONGO_URI);
+        const database = client.db("proyectoUX");
+        const clientes = database.collection("clientes");
+    }// fin del try
+     catch (error) {
+        
+    }// fin del catch
+    finally{
+
+    }// fin del finally
 })
 
 

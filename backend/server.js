@@ -54,7 +54,7 @@ appInstance.listen(port, async () => {
   initiateFirebase(console.dir);
 })
 
-//esta linea conecta a el CRUD con user Routes que contiene todos los metodos para los users
+//esta linea conecta a el CRUD con user Routes que contiene todos los metodos para los users basicamente el routes exporta los metodos en los controladores
 appInstance.use('/api/users', require('../routes/userRoutes.js'))
 // esta linea de abajo es el middleware basicamente hace que los errores se envien de manera personalizada con mas info y no en css si no que en json, para mas info revisar el file errorMiddleware.js 
 appInstance.use(errorHandler);
