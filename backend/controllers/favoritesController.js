@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const { MongoClient } = require('mongodb')
-const Favorites = require('./models/favorites.js')
+const Favorites = require('../models/favoritesModel.js')
 
 
 const getFavorites = asyncHandler(async (req,res) => {
@@ -46,8 +46,7 @@ const deleteFavorites = asyncHandler (async (req,res) =>{
         res.status(400)
         throw new Error ('Ese id no lo encuentro')
     }
-
-    await favorites.remove()
+    await favorites.deleteOne()
     res.status(200).json({message: `Deleted favorite with id: ${req.params.id}`})
 })
 
