@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const { MongoClient } = require('mongodb')
-const Favorites = require('../models/favoritesModel.js')
+const Favorites = require('../../models/favoritesModel')
 
 
 const getFavorites = asyncHandler(async (req,res) => {
