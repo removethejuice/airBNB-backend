@@ -14,6 +14,18 @@ class User {
     this.lastname = lastname;
     this.address = address;
     this.email = email;
+    this.favorites = [];
+  }
+
+  addToFavorites(product) {
+    this.favorites.push(product);
+  }
+
+  removeFromFavorites(product) {
+    const index = this.favorites.indexOf(product);
+    if (index !== -1) {
+      this.favorites.splice(index, 1);
+    }
   }
 }
 
