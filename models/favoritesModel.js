@@ -27,5 +27,5 @@ galeria:{
 }
 })
 
-module.exports = mongoose.model('Favorites',favoritesSchemaSchema)
+module.exports = mongoose.model('Favorites',favoritesSchema)
 
