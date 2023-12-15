@@ -40,6 +40,20 @@ const putFavorites = asyncHandler (async (req,res) => {
 })
 
 const deleteFavorites = asyncHandler (async (req,res) =>{
+    const favorites = await Favorites.findByID(req.params.id)
 
-    
+    if(!favorites){
+        res.status(400)
+        throw new Error ('Ese id no lo encuentro')
+    }
+
+    await favorites.remove()
+    res.status(200).json({message: `Deleted favorite with id: ${req.params.id}`})
 })
+
+module.exports ={
+   putFavorites,
+    postFavorites,
+    deleteFavorites,
+    getFavorites
+}
